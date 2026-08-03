@@ -12,19 +12,28 @@ Everything this skill produces is configuration for the target project. In v0.1 
 
 ## Steps
 
-1. Enumerate `skills/*/SKILL.md` in the polaris plugin. Read each `name` and `description`.
+1. Enumerate the sibling skill directories next to this file — `../*/SKILL.md` relative to
+   this `SKILL.md` — and read each `name` and `description`. If they cannot be read, fall
+   back to the skills listed under "Sections Written" and say in the report that the list
+   was not enumerated.
 2. Run the interview below, one question at a time.
 3. Ensure `AGENTS.md` exists in the target project root and carries every section under
    "Sections written".
-4. Ensure `CLAUDE.md` exists and contains the line `See AGENTS.md.` Preserve every other
+4. Ensure `CLAUDE.md` contains `@AGENTS.md` as its first line (an import directive, not a
+   prose pointer — see `## CLAUDE.md` below), adding it if missing. Preserve every other
    line already in it.
 5. Report what was added and what was already present — through `recap`, like any task.
+   State plainly in the report that in v0.1 `## Never touch` and `## Critical actions` are
+   instruction text the model reads, not harness-level deny rules; `permissions.deny` and
+   the `PreToolUse` gate land in v0.2.
 
 ## Idempotent
 
 Sections and entries that already exist are left alone. Add only what is missing. Never
-duplicate an entry, never rewrite one that is already there. A second run on the same
-project must find nothing to do and say so.
+duplicate an entry, never rewrite one that is already there. Idempotency is per *entry*, not
+per section. An existing section is scanned and only its missing entries are appended. A
+second run finds nothing to add unless polaris itself gained a skill since the last run —
+in which case the only change is the new `## Skills` bullet.
 
 ## Prohibited
 
@@ -56,8 +65,10 @@ guessed never-touch entry is worse than none, because it looks authoritative.
 
 ### `## Skills`
 
-One line per polaris skill. `<summary>` is the first clause of that skill's frontmatter
-`description`, trimmed to one line. Do not invent a summary.
+One line per polaris skill. `<summary>` is that skill's frontmatter `description` verbatim,
+collapsed to one line — trigger and action both. Do not shorten it, do not split it, do not
+invent wording that is not in the description. A bullet that says only when to invoke a
+skill, and never what it does, is not a summary.
 
 ```markdown
 ## Skills
@@ -127,9 +138,13 @@ completed task, and this section is what makes the rule reach it.
 
 ## `CLAUDE.md`
 
-It holds `See AGENTS.md.` plus anything genuinely Claude-specific, and nothing else. Two
+It holds `@AGENTS.md` plus anything genuinely Claude-specific, and nothing else. Two
 instruction files with overlapping content will drift; `AGENTS.md` is the one with content.
+Claude Code reads `CLAUDE.md`, not `AGENTS.md`; `@AGENTS.md` is an import directive, and a
+prose pointer imports nothing. It must not be wrapped in backticks or a fence, which would
+suppress the import.
 
-If `CLAUDE.md` already holds real content, **do not move it** — that is a migration, not an
-initialisation, and it belongs to whoever is doing it deliberately. Report the situation
-and leave the file alone.
+If `CLAUDE.md` already holds real content, do not **move** it — that is a migration, not an
+initialisation, and it belongs to whoever is doing it deliberately. Still add `@AGENTS.md`
+as the first line if it is missing, leave every existing line in place below it, and report
+that `CLAUDE.md` holds content a human should migrate deliberately.

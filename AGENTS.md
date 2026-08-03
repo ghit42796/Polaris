@@ -4,13 +4,13 @@ The working protocol this repo defines, applied to this repo.
 
 ## Skills
 
-- **`/polaris:five-rules`** — use when a new discussion starts, or when the user adds a new or extra requirement mid-task
-- **`/polaris:recap`** — use when the work of a task is complete
-- **`/polaris:init-project`** — use when setting up a project to use the polaris protocol, or after adding a new skill to polaris
+- **`/polaris:five-rules`** — Use when a new discussion starts, or when the user adds a new or extra requirement mid-task - states the work as a five-rule contract (What / Why / How / Prohibited / Done as Gherkin) and waits for confirmation before acting.
+- **`/polaris:recap`** — Use when the work of a task is complete - closes it out with a structured report covering the original ask, what was done, the evidence found along the way, and acceptance against the agreed criteria. Fires automatically on completion; it is not something to wait to be asked for.
+- **`/polaris:init-project`** — Use when setting up a project to use the polaris protocol, or after adding a new skill to polaris - interviews the user about the project's hard limits, then writes the guardrail sections into that project's AGENTS.md and points CLAUDE.md at it.
 
 ## Never touch
 
-- `C:\Users\ghit4\.claude\plugins\cache\**` — the installed plugin cache. Edits there are overwritten on update and silently lost
+- `C:\Users\ghit4\.claude\plugins\cache\**` — **do not edit.** Reading is fine. Edits there are overwritten on update and silently lost
 - `.claude-plugin/plugin.json` `name` and `.claude-plugin/marketplace.json` `plugins[0].name` — changing either breaks every existing install
 
 These are not waivable inside a contract. If a task requires one, stop and ask whether to

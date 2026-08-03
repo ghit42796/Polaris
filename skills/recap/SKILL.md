@@ -22,7 +22,7 @@ by another skill, another plugin, or no skill at all is still a completed task.
 |---|---|
 | Work agreed in a contract is finished | Yes |
 | Stopping to ask a question | No — the work is not finished |
-| A pure question answered under the short form | No — there is no contract to close |
+| A pure question answered under the short form | No — nothing was written and no work was done |
 | Work blocked partway | Yes. Mark section 4 ❌ and say in section 5 exactly where it stopped |
 
 ## The Block
@@ -55,6 +55,11 @@ do not imply a pass.
 **Section 3 is not optional.** It is the section most easily compressed away and the one
 with the longest shelf life: what you looked up, what it changed, which assumption turned
 out wrong. Conclusions without their reasoning cannot be revised later, only re-argued.
+
+**Section 4 works without a contract.** If there were no rule-5 Scenarios, state the
+acceptance criteria you actually held the work to — the commands you ran, the files you
+checked — one line each, ✅/❌, with its evidence. "There was no contract, so nothing to
+verify" is not an acceptable section 4.
 
 ## Subagents
 

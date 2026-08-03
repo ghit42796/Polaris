@@ -38,7 +38,7 @@ foreach ($d in $dirs) {
         continue
     }
 
-    $fm = $lines[1..($close - 1)]
+    $fm = if ($close -gt 1) { $lines[1..($close - 1)] } else { @() }
     $nameLine = $fm | Where-Object { $_ -match '^name:\s*(.+)$' } | Select-Object -First 1
     $descLine = $fm | Where-Object { $_ -match '^description:\s*(.+)$' } | Select-Object -First 1
 
@@ -61,7 +61,8 @@ foreach ($d in $dirs) {
         continue
     }
 
-    $body = ($lines[($close + 1)..($lines.Count - 1)] -join "`n").Trim()
+    $bodyLines = if ($close -lt $lines.Count - 1) { $lines[($close + 1)..($lines.Count - 1)] } else { @() }
+    $body = ($bodyLines -join "`n").Trim()
     if ($body.Length -lt 200) {
         $problems += "FAIL $($d.Name): body is too short to be a real skill"
         continue

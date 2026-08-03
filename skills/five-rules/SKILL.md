@@ -62,6 +62,9 @@ kind that costs most when discovered late.
   for this task. Lifting is a separate, one-off act. If rule 4 could waive it in
   passing, the entry would degrade into an ordinary rule 4 item — and those you wrote
   yourself.
+- **Never cite a list you have not read.** If the project has no `## Never touch`
+  section, say so in rule 4 — 「本專案尚未定義標準禁區;本次僅適用下列限制:…」— and
+  suggest `/polaris:init-project`.
 
 **5. Done** — Gherkin. `Then` must name something checkable: a command that exits zero,
 a file that exists, output that matches. "Code is clean", "it works", and "should be
