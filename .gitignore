@@ -1,0 +1,7 @@
+# Generated views of specs and plans — the .md is the source of truth
+*.html
+
+# OS cruft
+Thumbs.db
+desktop.ini
+.DS_Store
