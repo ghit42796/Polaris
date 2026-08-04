@@ -12,6 +12,11 @@ every session inherits them.
 | `/polaris:recap` | Work finishes | Posts a closing report: the original ask verbatim, what was done, the evidence found along the way, acceptance, and what was left out |
 | `/polaris:init-project` | Setting a project up | Interviews you about the project's hard limits, then writes them into `AGENTS.md` and `CLAUDE.md` |
 
+## Design
+
+- [`docs/spec.md`](docs/spec.md) — the design and the reasoning behind it.
+- [`docs/plan.md`](docs/plan.md) — the record of how v0.1 was built.
+
 ## Install
 
 ```
