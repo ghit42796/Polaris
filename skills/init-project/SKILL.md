@@ -76,6 +76,7 @@ skill, and never what it does, is not a summary.
 - **`/polaris:five-rules`** — <summary>
 - **`/polaris:recap`** — <summary>
 - **`/polaris:init-project`** — <summary>
+- **`/polaris:plain-answer`** — <summary>
 ```
 
 ### `## Never touch`
@@ -121,6 +122,22 @@ Verbatim:
 
 The tool-mandated bullet is load-bearing. Without it, "structured data → YAML" reads as an
 instruction to convert every JSON file in the repo.
+
+### `## Answering`
+
+Verbatim:
+
+```markdown
+## Answering
+
+Every reply — every reply, not only the closing one — carries what was looked at, what was
+inferred from it, and plain wording for anything the reader has not seen. A reply that hands the
+user a decision brings the options, each option's cost, and a recommendation. Format:
+/polaris:plain-answer.
+```
+
+Placed above `## Reporting` because it governs the far larger set: `## Reporting` fires once, at
+the end of a task, while this one applies to every reply on the way there.
 
 ### `## Reporting`
 

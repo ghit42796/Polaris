@@ -11,6 +11,7 @@ every session inherits them.
 | `/polaris:five-rules` | A discussion starts, or a new requirement arrives mid-task | Posts a five-rule contract — What / Why / How / Prohibited / Done as Gherkin — and waits for confirmation |
 | `/polaris:recap` | Work finishes | Posts a closing report: the original ask verbatim, what was done, the evidence found along the way, acceptance, and what was left out |
 | `/polaris:init-project` | Setting a project up | Interviews you about the project's hard limits, then writes them into `AGENTS.md` and `CLAUDE.md` |
+| `/polaris:plain-answer` | Every reply | Carries what you read and what you inferred into the reply itself, in plain words — and turns 「你決定」 into options with costs and a recommendation |
 
 ## Design
 
@@ -20,11 +21,33 @@ every session inherits them.
 ## Install
 
 ```
-/plugin marketplace add D:\Workspace\polaris
+/plugin marketplace add ghit42796/Polaris
+/plugin install polaris@polaris
+```
+
+`polaris@polaris` is plugin-name@marketplace-name. Both are `polaris`; it is not a typo.
+
+To work on the plugin itself, point the marketplace at your own clone instead — the path
+is wherever you cloned it:
+
+```
+/plugin marketplace add /path/to/your/Polaris
 /plugin install polaris@polaris
 ```
 
 Editing a skill afterwards needs a reload before the change takes effect.
+
+## Hooks
+
+`hooks/hooks.json` registers one `UserPromptSubmit` hook: every prompt you send,
+`hooks/inject-plain-answer.js` reads `skills/plain-answer/SKILL.md` and injects it into
+context. The skill that governs every reply is the one skill a model cannot be trusted to
+remember to load, so it is not left to memory.
+
+The script reads the skill from disk rather than embedding a copy, costs roughly 1.2k
+tokens per turn, and returns an empty context on any error — it must never block a prompt.
+Hooks are Claude Code only; under any other harness the rule falls back to the
+`## Answering` section in `AGENTS.md`.
 
 ## Development
 
@@ -36,7 +59,8 @@ Validates every `skills/*/SKILL.md`. Exit code 0 means all valid.
 
 ## Status
 
-v0.1. The enforcement layer — a `Stop` hook for `recap`, a `PreToolUse` hook plus
-`vibe-diff` for critical actions, `.claude/settings.json` `permissions.deny` generation
-from the never-touch list, and `spec-to-html` — is v0.2, gated behind verifying what
+v0.2.0. The first piece of the enforcement layer has landed — the `UserPromptSubmit` hook
+above. The rest — a `Stop` hook for `recap`, a `PreToolUse` hook plus `vibe-diff` for
+critical actions, `.claude/settings.json` `permissions.deny` generation from the
+never-touch list, and `spec-to-html` — is still pending, gated behind verifying what
 Claude Code hooks can actually do.

@@ -7,6 +7,7 @@ The working protocol this repo defines, applied to this repo.
 - **`/polaris:five-rules`** — Use when a new discussion starts, or when the user adds a new or extra requirement mid-task - states the work as a five-rule contract (What / Why / How / Prohibited / Done as Gherkin) and waits for confirmation before acting.
 - **`/polaris:recap`** — Use when the work of a task is complete - closes it out with a structured report covering the original ask, what was done, the evidence found along the way, and acceptance against the agreed criteria. Fires automatically on completion; it is not something to wait to be asked for.
 - **`/polaris:init-project`** — Use when setting up a project to use the polaris protocol, or after adding a new skill to polaris - interviews the user about the project's hard limits, then writes the guardrail sections into that project's AGENTS.md and points CLAUDE.md at it.
+- **`/polaris:plain-answer`** — Use when writing any reply to the user - carries the context you gathered and the inference you made into the reply itself, in plain language, instead of assuming they watched you learn it. Every reply, not just the final one; a reply that asks them to decide must bring the options, the costs, and your recommendation.
 
 ## Never touch
 
@@ -24,6 +25,16 @@ lift it for that task.
   and lockfiles stay as they are. This rule governs only files whose format we choose.
 - Do not introduce a third format (TOML, INI, ad-hoc JSON) for files we control. YAML
   frontmatter inside a `.md` file is consistent with these rules, not an exception.
+
+## Answering
+
+Every reply — every reply, not only the closing one — carries what was looked at, what was
+inferred from it, and plain wording for anything the reader has not seen. A reply that hands the
+user a decision brings the options, each option's cost, and a recommendation. Format:
+/polaris:plain-answer.
+
+This one is not left to memory: polaris's `UserPromptSubmit` hook injects the skill on
+every prompt. Under a harness without hooks, this section is the whole enforcement.
 
 ## Reporting
 
