@@ -9,7 +9,7 @@ every session inherits them.
 | Skill | When it fires | What it does |
 | --- | --- | --- |
 | `/polaris:five-rules` | A discussion starts, or a new requirement arrives mid-task | Posts a five-rule contract — What / Why / How / Prohibited / Done as Gherkin — and waits for confirmation |
-| `/polaris:recap` | Work finishes | Posts a closing report: the original ask verbatim, what was done, the evidence found along the way, acceptance, and what was left out |
+| `/polaris:recap` | Work finishes | Posts a closing report covering the whole task from the message that first raised it: the original ask and its reasons, the contract verbatim, evidence and decisions along the way, what was done, what exists now, acceptance, and what was left out |
 | `/polaris:init-project` | Setting a project up | Interviews you about the project's hard limits, then writes them into `AGENTS.md` and `CLAUDE.md` |
 | `/polaris:plain-answer` | Every reply | Carries what you read and what you inferred into the reply itself, in plain words — and turns 「你決定」 into options with costs and a recommendation |
 
