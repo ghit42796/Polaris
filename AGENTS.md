@@ -8,6 +8,7 @@ The working protocol this repo defines, applied to this repo.
 - **`/polaris:recap`** — Use when the work of a task is complete - closes it out with a structured report covering the original ask, what was done, the evidence found along the way, and acceptance against the agreed criteria. Fires automatically on completion; it is not something to wait to be asked for.
 - **`/polaris:init-project`** — Use when setting up a project to use the polaris protocol, or after adding a new skill to polaris - interviews the user about the project's hard limits, then writes the guardrail sections into that project's AGENTS.md and points CLAUDE.md at it.
 - **`/polaris:plain-answer`** — Use when writing any reply to the user - carries the context you gathered and the inference you made into the reply itself, in plain language, instead of assuming they watched you learn it. Every reply, not just the final one; a reply that asks them to decide must bring the options, the costs, and your recommendation.
+- **`/polaris:no-bare-codes`** — Use when writing any reply that contains a code or short label - P7, D1, T3, R2, option A/B, step 2, a finding or ticket ID - before sending it. Every reply, not just the final one.
 
 ## Never touch
 
@@ -31,9 +32,10 @@ lift it for that task.
 Every reply — every reply, not only the closing one — carries what was looked at, what was
 inferred from it, and plain wording for anything the reader has not seen. A reply that hands the
 user a decision brings the options, each option's cost, and a recommendation. Format:
-/polaris:plain-answer.
+/polaris:plain-answer. A code in a reply — P7, D1, option A — has its meaning beside it the
+first time it appears in that reply. Format: /polaris:no-bare-codes.
 
-This one is not left to memory: polaris's `UserPromptSubmit` hook injects the skill on
+These are not left to memory: polaris's `UserPromptSubmit` hook injects both skills on
 every prompt. Under a harness without hooks, this section is the whole enforcement.
 
 ## Reporting

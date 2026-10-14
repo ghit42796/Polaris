@@ -12,6 +12,7 @@ every session inherits them.
 | `/polaris:recap` | Work finishes | Posts a closing report covering the whole task from the message that first raised it: the original ask and its reasons, the contract verbatim, evidence and decisions along the way, what was done, what exists now, acceptance, and what was left out |
 | `/polaris:init-project` | Setting a project up | Interviews you about the project's hard limits, then writes them into `AGENTS.md` and `CLAUDE.md` |
 | `/polaris:plain-answer` | Every reply | Carries what you read and what you inferred into the reply itself, in plain words — and turns 「你決定」 into options with costs and a recommendation |
+| `/polaris:no-bare-codes` | Every reply | Gives every code in a reply — P7, D1, option A/B — its meaning right beside it at first use, so the reader never has to decode one |
 
 ## Design
 
@@ -40,12 +41,12 @@ Editing a skill afterwards needs a reload before the change takes effect.
 ## Hooks
 
 `hooks/hooks.json` registers one `UserPromptSubmit` hook: every prompt you send,
-`hooks/inject-plain-answer.js` reads `skills/plain-answer/SKILL.md` and injects it into
-context. The skill that governs every reply is the one skill a model cannot be trusted to
-remember to load, so it is not left to memory.
+`hooks/inject-skills.js` reads every skill in its `SKILLS` list — `plain-answer` and
+`no-bare-codes` — and injects them into context. The skills that govern every reply are the
+ones a model cannot be trusted to remember to load, so they are not left to memory.
 
-The script reads the skill from disk rather than embedding a copy, costs roughly 1.2k
-tokens per turn, and returns an empty context on any error — it must never block a prompt.
+The script reads the skills from disk rather than embedding copies, costs roughly 1.5k
+tokens per turn, and skips any skill it cannot read — it must never block a prompt.
 Hooks are Claude Code only; under any other harness the rule falls back to the
 `## Answering` section in `AGENTS.md`.
 

@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "description": "polaris: inject the plain-answer skill on every user prompt",
+  "description": "polaris: inject the every-reply skills (plain-answer, no-bare-codes) on every user prompt",
   "hooks": {
     "UserPromptSubmit": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/inject-plain-answer.js\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/inject-skills.js\"",
             "timeout": 10
           }
         ]
