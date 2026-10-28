@@ -18,8 +18,22 @@ every session inherits them.
 
 ## Design
 
-- [`docs/spec.md`](docs/spec.md) — the design and the reasoning behind it.
-- [`docs/plan.md`](docs/plan.md) — the record of how v0.1 was built.
+- **A plugin, not project skills.** Skills in a repo's `.claude/skills/` are visible only
+  inside that repo, and `init-project` exists to work on other projects. A user-level
+  plugin installs once, works everywhere, and gets a namespace (`/polaris:…`) and a version.
+- **`AGENTS.md` holds the content; `CLAUDE.md` holds `@AGENTS.md`.** Two files with
+  overlapping content drift. Here and in every project `init-project` sets up.
+- **The file-format rule is always-loaded text, not a skill.** A skill applies only when
+  the model loads it; `AGENTS.md` applies every session. So the rule is a section
+  `init-project` writes.
+- **`recap` is separate from `five-rules`.** One description covering both the start and
+  the end of a task blurs both triggers, and the end is the one that gets missed.
+- **Other plugins are never edited.** Their skills live in the plugin cache and are
+  overwritten on update. `recap` instead covers any completed task, whatever drove it.
+- **`init-project` never moves existing content**, which keeps it safe to re-run.
+  Migrating an old `CLAUDE.md` into `AGENTS.md` is a deliberate manual step.
+- **Skill bodies are in English**, because the model reads them. What a skill says to
+  the user follows the language of the conversation.
 
 ## Install
 
@@ -63,11 +77,3 @@ powershell -NoProfile -File scripts\check-skills.ps1
 ```
 
 Validates every `skills/*/SKILL.md`. Exit code 0 means all valid.
-
-## Status
-
-v0.2.0. The first piece of the enforcement layer has landed — the `UserPromptSubmit` hook
-above. The rest — a `Stop` hook for `recap`, a `PreToolUse` hook plus `vibe-diff` for
-critical actions, `.claude/settings.json` `permissions.deny` generation from the
-never-touch list, and `spec-to-html` — is still pending, gated behind verifying what
-Claude Code hooks can actually do.

@@ -7,7 +7,7 @@ description: Use when setting up a project to use the polaris protocol, or after
 
 Write a project's guardrails so every later session inherits them.
 
-Everything this skill produces is configuration for the target project. In v0.1 it writes
+Everything this skill produces is configuration for the target project. It writes
 `AGENTS.md` and `CLAUDE.md`, and nothing else.
 
 ## Steps
@@ -23,9 +23,8 @@ Everything this skill produces is configuration for the target project. In v0.1 
    prose pointer — see `## CLAUDE.md` below), adding it if missing. Preserve every other
    line already in it.
 5. Report what was added and what was already present — through `recap`, like any task.
-   State plainly in the report that in v0.1 `## Never touch` and `## Critical actions` are
-   instruction text the model reads, not harness-level deny rules; `permissions.deny` and
-   the `PreToolUse` gate land in v0.2.
+   State plainly in the report that `## Never touch` and `## Critical actions` are
+   instruction text the model reads, not harness-level deny rules.
 
 ## Idempotent
 
