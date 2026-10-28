@@ -77,6 +77,7 @@ skill, and never what it does, is not a summary.
 - **`/polaris:recap`** — <summary>
 - **`/polaris:init-project`** — <summary>
 - **`/polaris:plain-answer`** — <summary>
+- **`/polaris:adversarial-review`** — <summary>
 ```
 
 ### `## Never touch`

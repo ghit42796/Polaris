@@ -13,6 +13,8 @@ partner catch a misunderstanding in thirty seconds instead of after a wasted tur
 Announce the skill, post the block below with every rule filled in, then **stop and
 wait**. Do not begin work until they say go or supply corrections.
 
+**REQUIRED:** run `polaris:owner-review` on the draft before posting it.
+
 On correction, reissue the block. Do not argue outside it.
 
 ## The Block

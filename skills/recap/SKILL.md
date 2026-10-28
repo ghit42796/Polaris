@@ -13,6 +13,11 @@ on, instead of re-reading the whole conversation.
 **This fires on its own.** Nobody asks for it. When the work of a task is finished, the
 report is part of finishing.
 
+**REQUIRED:** run `polaris:adversarial-review` on the work before writing the report — it
+can change the work. Its results go in section 5.
+
+**REQUIRED:** run `polaris:owner-review` on the work and the draft report before posting it.
+
 The obligation is *any completed task*, not *any task driven by five-rules*. Work driven
 by another skill, another plugin, or no skill at all is still a completed task.
 
@@ -64,7 +69,9 @@ nothing to report holds the word 「無」; it is never omitted.
 
 **4. 現在的狀態** — <寫給沒看過對話的人：現在存在什麼（檔案、函式、旗標、設定、測試）、怎麼用、怎麼驗。每個名詞第一次出現附半句：在哪、做什麼>
 
-**5. 驗收** — <每個 rule-5 Scenario，✅/❌，附可查證的原文證據>
+**5. 驗收**
+- **Done** — <每個 rule-5 Scenario，✅/❌，附可查證的原文證據>
+- **對抗式審查** — <強度（完整／跳過／非獨立）與理由；一行統計；成立與無法判定的逐條：攻擊者、批評、裁判判定、我的處理>
 
 **6. 沒做 / 待辦** — <範圍外、卡住、刻意跳過、我裁了但你尚未定案的>
 ```
@@ -103,7 +110,8 @@ purpose.
 "should be fine", never "mostly working". If a check was not run, say it was not run —
 do not imply a pass. Section 5 works without a contract: if there were no rule-5
 Scenarios, state the criteria you actually held the work to — the commands you ran, the
-files you checked — one line each, ✅/❌, with evidence.
+files you checked — one line each, ✅/❌, with evidence. The 對抗式審查 slot is filled
+as `/polaris:adversarial-review` specifies; a review that did not run says why.
 
 **Section 6 repeats your unratified rulings.** Anything you decided that they have not
 confirmed appears here as well as in section 2, so they can find it without reading the

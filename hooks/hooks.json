@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "polaris: inject the every-reply skills (plain-answer, no-bare-codes) on every user prompt",
+  "description": "polaris: inject the every-reply skills (plain-answer, no-bare-codes) and the once-per-task trigger (adversarial-review) on every user prompt",
   "hooks": {
     "UserPromptSubmit": [
       {

@@ -13,6 +13,8 @@ every session inherits them.
 | `/polaris:init-project` | Setting a project up | Interviews you about the project's hard limits, then writes them into `AGENTS.md` and `CLAUDE.md` |
 | `/polaris:plain-answer` | Every reply | Carries what you read and what you inferred into the reply itself, in plain words — and turns 「你決定」 into options with costs and a recommendation |
 | `/polaris:no-bare-codes` | Every reply | Gives every code in a reply — P7, D1, option A/B — its meaning right beside it at first use, so the reader never has to decode one |
+| `/polaris:owner-review` | A plan, contract, or option list is about to be shown; work is about to be reported done | Reads the draft as the person who answers for the result: fixes and reverts what it can, decides what the evidence settles, and brings only the questions only you can answer |
+| `/polaris:adversarial-review` | Work finishes, before the closing report | Has fresh subagents try to break the work, each with one assignment, and a separate judge rule on every attack, so "done" is never the author grading their own work. Costs six subagents per finished task; skipped only for a pure question, or when you say so |
 
 ## Design
 
@@ -45,7 +47,11 @@ Editing a skill afterwards needs a reload before the change takes effect.
 `no-bare-codes` — and injects them into context. The skills that govern every reply are the
 ones a model cannot be trusted to remember to load, so they are not left to memory.
 
-The script reads the skills from disk rather than embedding copies, costs roughly 1.5k
+Skills in its `TRIGGERS` list — `adversarial-review` — fire once per task, not on every
+reply, so only their frontmatter `description` goes in: one line saying when to load the
+skill, about 120 tokens, instead of its full text.
+
+The script reads the skills from disk rather than embedding copies, costs roughly 1.6k
 tokens per turn, and skips any skill it cannot read — it must never block a prompt.
 Hooks are Claude Code only; under any other harness the rule falls back to the
 `## Answering` section in `AGENTS.md`.
