@@ -10,7 +10,7 @@ The working protocol this repo defines, applied to this repo.
 - **`/polaris:plain-answer`** — Use when writing any reply to the user - carries the context you gathered and the inference you made into the reply itself, in plain language, instead of assuming they watched you learn it. Every reply, not just the final one; a reply that asks them to decide must bring the options, the costs, and your recommendation.
 - **`/polaris:no-bare-codes`** — Use when writing any reply that contains a code or short label - P7, D1, T3, R2, option A/B, step 2, a finding or ticket ID - before sending it. Every reply, not just the final one.
 - **`/polaris:owner-review`** — Use when a plan, spec, contract, or list of options is drafted and about to be shown to the user, and when work is finished and about to be reported as done - before either message is sent.
-- **`/polaris:adversarial-review`** — Use when the work of a task is finished, before its 結案報告 is written - has reviewers other than the author try to break the deliverable, so "done" is never the author grading their own work. Fires automatically on completion; it is not something to wait to be asked for.
+- **`/polaris:adversarial-review`** — Use when the work of a task is finished, before its 結案報告 is written - has reviewers other than the author try to break the deliverable, so "done" is never the author grading their own work. Fires automatically on completion, scaled to what changed - none for a lookup, two critics for non-production changes and for follow-ups inside already-reviewed work, five critics and a judge for production-facing ones.
 
 ## Never touch
 
@@ -45,8 +45,8 @@ every prompt. Under a harness without hooks, this section is the whole enforceme
 Every completed task ends with a 結案報告 — regardless of which skill, plugin, or none at
 all drove the work. Format: /polaris:recap.
 
-Before the report, reviewers other than the author try to break the work, and a separate
-judge rules on each attack. Format: /polaris:adversarial-review. polaris's
+Before the report, reviewers other than the author try to break the work, and what they
+find is settled by a separate judge or by evidence that reproduces, scaled to what changed. Format: /polaris:adversarial-review. polaris's
 `UserPromptSubmit` hook injects a one-line trigger for it on every prompt.
 
 ## Checks

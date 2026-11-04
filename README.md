@@ -14,7 +14,7 @@ every session inherits them.
 | `/polaris:plain-answer` | Every reply | Carries what you read and what you inferred into the reply itself, in plain words — and turns 「你決定」 into options with costs and a recommendation |
 | `/polaris:no-bare-codes` | Every reply | Gives every code in a reply — P7, D1, option A/B — its meaning right beside it at first use, so the reader never has to decode one |
 | `/polaris:owner-review` | A plan, contract, or option list is about to be shown; work is about to be reported done | Reads the draft as the person who answers for the result: fixes and reverts what it can, decides what the evidence settles, and brings only the questions only you can answer |
-| `/polaris:adversarial-review` | Work finishes, before the closing report | Has fresh subagents try to break the work, each with one assignment, and a separate judge rule on every attack, so "done" is never the author grading their own work. Costs six subagents per finished task; skipped only for a pure question, or when you say so |
+| `/polaris:adversarial-review` | Work finishes, before the closing report | Has fresh subagents try to break the work, each with one assignment, so "done" is never the author grading their own work. Scaled to what changed: none for a lookup, values you dictated, or memory and report files; two critics, with their evidence re-run in place of a judge, for non-production changes and for follow-ups wholly inside work already fully reviewed; five critics and a separate judge for a production-facing change. Once you say to skip it, it stays off for the session unless you limited it to one task |
 
 ## Design
 
